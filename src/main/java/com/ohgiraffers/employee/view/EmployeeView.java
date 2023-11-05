@@ -1,5 +1,9 @@
 package com.ohgiraffers.employee.view;
 
+import com.ohgiraffers.employee.service.EmployeeService;
+
+import java.util.Scanner;
+
 public class EmployeeView {
 
     public void displayView() {
@@ -17,5 +21,20 @@ public class EmployeeView {
         ==========================================
         상세 내용은 pdf를 참고
         */
+
+        Scanner sc = new Scanner(System.in);
+        EmployeeService employeeSerivce = new EmployeeService();
+
+        do {
+            System.out.println("===================직원관리=======================");
+            System.out.println("1. 직원 전체 조회");
+            int no = sc.nextInt();
+
+            switch (no){
+                case 1 : employeeSerivce.selectAllEmployee();break;
+            }
+
+        }while (true);
+
     }
 }
