@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ohgiraffers.employee.model.dao.EmployeeMapper">
+    <resultMap id="EmployeeDTO" type="com.ohgiraffers.employee.model.dto.EmployeeDTO">
+    <id property="emp_id" column="EMP_ID"/>
+        <result property="emp_name" column="EMP_NAME"/>
+        <result property="emp_no" column="EMP_NO"/>
+        <result property="email" column="EMAIL"/>
+        <result property="phone" column="PHONE"/>
+        <result property="dept_code" column="DEPT_CODE"/>
+        <result property="job_code" column="JOB_CODE"/>
+        <result property="sal_level" column="SAL_LEVEL"/>
+        <result property="salary" column="SALARY"/>
+        <result property="bonus" column="BONUS"/>
+        <result property="manager_id" column="MANAGER_ID"/>
+        <result property="hire_date" column="HIRE_DATE"/>
+        <result property="ent_date" column="ENT_DATE"/>
+        <result property="ent_yn" column="ENT_YN"/>
+
+
+
+
+    </resultMap>
+    <resultMap id="DepartmentDTO" type="com.ohgiraffers.employee.model.dto.DepartmentDTO">
+        <id property="dept_id" column="DEPT_ID"/>
+        <result property="title" column="DEPT_TITLE"/>
+        <result property="location_id" column="LOCATION_ID"/>
+    </resultMap>
+    <resultMap id="JobDTO" type="com.ohgiraffers.employee.model.dto.JobDTO">
+        <id property="job_code" column="JOB_CODE"/>
+        <result property="job_name" column="JOB_NAME"/>
+    </resultMap>
+
+<resultMap id="EmployeeAndDepartmentAndJobDTO" type="com.ohgiraffers.employee.model.dto.EmployeeAndDepartmentAndJobDTO">
+<association property="employeeDTO" resultMap="EmployeeDTO"/>
+<association property="departmentDTO" resultMap="DepartmentDTO"/>
+<association property="jobDTO" resultMap="JobDTO"/>
+</resultMap>
+
+    <select id="selectAllEmployee" resultMap="EmployeeAndDepartmentAndJobDTO">
+        SELECT e.EMP_NAME, d.DEPT_TITLE, j.JOB_NAME, e.PHONE
+        FROM employee e
+        LEFT JOIN department d ON e.DEPT_CODE = d.DEPT_ID
+        LEFT JOIN job j ON e.JOB_CODE = j.JOB_CODE;
+
+
+    </select>
+</mapper>
+
+
+
