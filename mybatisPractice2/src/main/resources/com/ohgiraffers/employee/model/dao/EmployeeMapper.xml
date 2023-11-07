@@ -42,10 +42,12 @@
 </resultMap>
 
     <select id="selectAllEmployee" resultMap="EmployeeAndDepartmentAndJobDTO">
-        SELECT e.EMP_NAME, d.DEPT_TITLE, j.JOB_NAME, e.PHONE
-        FROM employee e
-        LEFT JOIN department d ON e.DEPT_CODE = d.DEPT_ID
-        LEFT JOIN job j ON e.JOB_CODE = j.JOB_CODE;
+        SELECT E.EMP_NAME, COALESCE(D.DEPT_TITLE, '미배정') AS DEPT_TITLE, J.JOB_NAME, COALESCE(E.PHONE, '미배정') AS PHONE
+        FROM EMPLOYEE AS E
+        LEFT JOIN DEPARTMENT AS D ON E.DEPT_CODE = D.DEPT_ID
+        INNER JOIN JOB AS J ON E.JOB_CODE = J.JOB_CODE;
+
+
 
 
     </select>

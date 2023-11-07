@@ -42,10 +42,9 @@ public class EmployeeAndDepartmentAndJobDTO {
 
     @Override
     public String toString() {
-        return "EmployeeAndDepartmentAndJobDTO{" +
-                "departmentDTO=" + employeeDTO.getEmp_name()+
-                ", employeeDTO= " + jobDTO.getJob_name() +  "    " +  departmentDTO.getTitle() +
-                ", jobDTO=" + employeeDTO.getPhone() +
-                '}';
+        return
+                "직원이름: " + employeeDTO.getEmp_name()+
+                " 부서명: " + departmentDTO.getTitle() +  " 직급: " +  jobDTO.getJob_name() +
+                " 전화번호: " + employeeDTO.getPhone() ;
     }
 }
